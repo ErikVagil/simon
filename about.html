@@ -16,30 +16,37 @@
         />
     </head>
     
-    <body>
-        <header> <!-- Consistent across all pages -->
-            <h1><img src="favicon.ico" alt="Simon logo"> Simon&reg; Says</h1> <!-- &reg; is the (R) symbol -->
-            <p>The CS260 version of Simon&reg; featuring a web-based twist on the classic game</p>
-            <nav>
-                <menu>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="play.html">Play</a></li>
-                    <li><a href="scores.html">Scores</a></li>
-                    <li><a href="about.html">About</a></li>
-                </menu>
+    <body class="bg-dark text-light">
+        <header class="container-fluid"> <!-- Consistent across all pages -->
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand text-light align-items-center" href="index.html"><h2>Simon<sup>&reg;</sup></h2></a> <!-- &reg; is the (R) symbol -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbar-content">
+                    <!-- <p>The CS260 version of Simon&reg; featuring a web-based twist on the classic game</p> -->
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link active text-light" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link text-light" href="play.html">Play</a></li>
+                        <li class="nav-item"><a class="nav-link text-light" href="scores.html">Scores</a></li>
+                        <li class="nav-item"><a class="nav-link text-light" href="about.html">About</a></li>
+                    </ul>
+                </div>
             </nav>
-            <hr/> <!-- The <hr> tag denotes a shift in content, shown by a horizontal line -->
         </header>
 
-        <main>
-            <p>Simon is a repetitive memory game where you follow the demonstrated color sequence until you make a mistake. The longer the sequence you repeat, the greater your score.</p>
-            <p>The name Simon is a registered trademark owned by Milton-Bradley. Our use of the name and the game is for non-profit educational use only. No part of this code or program should be used outside of that definition.</p>
-            <hr>
+        <main class="bg-secondary text-center">
+            <div>
+                <p>Simon is a repetitive memory game where you follow the demonstrated color sequence until you make a mistake. The longer the sequence you repeat, the greater your score.</p>
+                <p>The name Simon is a registered trademark owned by Milton-Bradley. Our use of the name and the game is for non-profit educational use only. No part of this code or program should be used outside of that definition.</p>
+            </div>
         </main>
 
-        <footer> <!-- Consistent across all pages -->
-            <p>Created by Erik Vagil</p>
-            <p>Link to <a href="https://github.com/ErikVagil/simon">Github</a> source</p>
+        <footer class="bg-dark text-secondary"> <!-- Consistent across all pages -->
+            <div class="container-fluid">
+                <div class="float-start">Created by Erik Vagil</div>
+                <div class="float-end">Link to <a href="https://github.com/ErikVagil/simon">Github</a> source</div>
+            </div>
         </footer>
     </body>
 </html>
