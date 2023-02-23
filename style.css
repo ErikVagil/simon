@@ -1,6 +1,7 @@
 body {
     display: flex;
     flex-direction: column;
+    min-width: 375px;
 }
 
 header {
@@ -32,6 +33,7 @@ footer {
 .game {
     background: black;
     border-radius: 50%;
+    box-shadow: 0 0 20px 5px rgb(69 69 69);
     width: 80vw;
     height: 80vw;
     position: absolute;
@@ -115,3 +117,16 @@ footer {
     border: solid thin rgb(0, 117, 0);
     background-color: #030;
 }
+
+@media (max-height: 600px) {
+    header {
+      display: none;
+    }
+    footer {
+      display: none;
+    }
+    main {
+      flex: 1 100vh;
+    }
+  }
+  
