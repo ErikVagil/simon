@@ -15,84 +15,50 @@
             crossorigin="anonymous"
         />
     </head>
-    
-    <body>
-        <header> <!-- Consistent across all pages -->
-            <h1><img src="favicon.ico" alt="Simon logo"> Simon&reg; Says</h1> <!-- &reg; is the (R) symbol -->
-            <p>The CS260 version of Simon&reg; featuring a web-based twist on the classic game</p>
-            <nav>
-                <menu>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="play.html">Play</a></li>
-                    <li><a href="scores.html">Scores</a></li>
-                    <li><a href="about.html">About</a></li>
-                </menu>
+    <body class="bg-dark text-light">
+        <header class="container-fluid"> <!-- Consistent across all pages -->
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand text-light align-items-center" href="index.html"><h2>Simon<sup>&reg;</sup></h2></a> <!-- &reg; is the (R) symbol -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbar-content">
+                    <!-- <p>The CS260 version of Simon&reg; featuring a web-based twist on the classic game</p> -->
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link active text-light" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link text-light" href="play.html">Play</a></li>
+                        <li class="nav-item"><a class="nav-link text-light" href="scores.html">Scores</a></li>
+                        <li class="nav-item"><a class="nav-link text-light" href="about.html">About</a></li>
+                    </ul>
+                </div>
             </nav>
-            <hr/> <!-- The <hr> tag denotes a shift in content, shown by a horizontal line -->
         </header>
 
-        <main>
+        <main class="play bg-secondary">
             <!-- Player username -->
-            <div class="players">
-                Player: <span class="player-username">none</span>
+            <div class="player ps-2 pt-1">
+                Player: <span class="player-username">Guest</span>
             </div>
-            <br>
-            <!-- Score box -->
-            <div>
-                <label for="score">Score: </label>
-                <input type="text" id="score" value="---" readonly>
+            <div class="game">
+                <div class="button-container">
+                    <button class="button-top-left"></button>
+                    <button class="button-top-right"></button>
+                    <button class="button-bottom-left"></button>
+                    <button class="button-bottom-right"></button>
+                    <div class="controls center">
+                        <div class="name">Simon<sup>&reg;</sup></div>
+                        <div class="score">---</div>
+                        <button class="btn btn-primary">Reset</button>
+                    </div>
+                </div>
             </div>
-            <br>
-            <!-- Reset button -->
-            <div>
-                <button>Reset</button>
-            </div>
-            <br>
-            <!-- Actual Simon buttons -->
-            <div>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <button>
-                                    <svg aria-hidden="true" viewBox="0 0 100 100" height="100" width="100">
-                                        <path d="M 5,5 95,5 95,95 5,95" fill="green"></path>
-                                    </svg>
-                                </button>
-                            </td>
-                            <td>
-                                <button>
-                                    <svg aria-hidden="true" viewBox="0 0 100 100" height="100" width="100">
-                                        <path d="M 5,5 95,5 95,95 5,95" fill="red"></path>
-                                    </svg>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <button>
-                                    <svg aria-hidden="true" viewBox="0 0 100 100" height="100" width="100">
-                                        <path d="M 5,5 95,5 95,95 5,95" fill="yellow"></path>
-                                    </svg>
-                                </button>
-                            </td>
-                            <td>
-                                <button>
-                                    <svg aria-hidden="true" viewBox="0 0 100 100" height="100" width="100">
-                                        <path d="M 5,5 95,5 95,95 5,95" fill="blue"></path>
-                                    </svg>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <hr>
         </main>
 
-        <footer> <!-- Consistent across all pages -->
-            <p>Created by Erik Vagil</p>
-            <p>Link to <a href="https://github.com/ErikVagil/simon">Github</a> source</p>
+        <footer class="bg-dark text-secondary"> <!-- Consistent across all pages -->
+            <div class="container-fluid">
+                <div class="float-start">Created by Erik Vagil</div>
+                <div class="float-end">Link to <a href="https://github.com/ErikVagil/simon">Github</a> source</div>
+            </div>
         </footer>
     </body>
 </html>
