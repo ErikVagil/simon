@@ -1,0 +1,20 @@
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    flex: 0 70px;
+}
+
+main {
+    display: flex;
+    flex: 1 calc(100vh - 100px);
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+footer {
+    flex: 0 28px;
+}
