@@ -17,7 +17,7 @@ main {
 }
 
 footer {
-    flex: 0 28px;
+    flex: 0 25px;
 }
 
 .player {
@@ -28,6 +28,14 @@ footer {
 
 .player-username {
     color: cyan;
+}
+
+.current-player {
+    border-radius: 5px;
+    padding-top: 3px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-bottom: 7px;
 }
 
 .game {
