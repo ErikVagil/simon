@@ -6,7 +6,7 @@ function loadScoresFromCookies()
     {
         scores = JSON.parse(scoresText);
     }
-    const tableBodyEl = document.querySelector('#scores');
+    const tableBodyElement = document.querySelector('#scores');
 
     if (scores.length)
     {
