@@ -16,7 +16,7 @@ class Button
         this.hue = assetPair.hue;
 
         // Set button color
-        this.paint(0.25);
+        this.paint(25);
     }
 
     // Change brightness value of button
@@ -24,7 +24,7 @@ class Button
     paint(percentage)
     {
         // Set button brightness to percentage
-        const color = `hsl(${this.hue}, 100%, ${percentage})`;
+        const color = `hsl(${this.hue}, 100%, ${percentage}%)`;
 
         // Set button style
         this.element.style.backgroundColor = color;
@@ -33,9 +33,9 @@ class Button
     // Visual and audio effect on click
     async pressEffects(volume = 1.0)
     {
-        this.paint(0.50);
+        this.paint(50);
         await this.play(volume);
-        this.paint(0.25);
+        this.paint(25);
     }
 
     // Create sound
@@ -75,7 +75,7 @@ class Game
 
     updatePlayerNameElement()
     {
-        const playerNameElement = document.querySelector(".current-player");
+        const playerNameElement = document.querySelector(".player-username");
 
         // Set player display element to stored name or "Guest" for no name
         playerNameElement.textContent = (localStorage.getItem("inputtedUserName") ?? "Guest");
@@ -156,7 +156,7 @@ class Game
     // Gameplay logic of pressing a button - not the same as pressEffects()
     async pressButton(button)
     {
-        score = this.correctSequence.length - 1;
+        let score = this.correctSequence.length - 1;
 
         if (this.playerInputEnabled)
         {
@@ -217,7 +217,7 @@ class Game
     {
         // Convert map values into a list
         let buttons = Array.from(this.buttons.values());
-        return buttons[Math.floor(Math.random * this.buttons.length)];
+        return buttons[Math.floor(Math.random() * this.buttons.size)];
     }
 
     // ------------------------------
@@ -236,9 +236,9 @@ class Game
             }, 500);
         });
 
-        for (button of this.correctSequence)
+        for (const button of this.correctSequence)
         {
-            await button.pressEffects();
+            await button.pressEffects(1.0);
 
             // Wait 100ms
             await new Promise((resolve) =>
