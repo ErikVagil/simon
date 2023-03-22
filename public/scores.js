@@ -1,11 +1,14 @@
-function loadScoresFromCookies()
+async function loadScoresFromCookies()
 {
-    let scores = [];
-    const scoresText = localStorage.getItem("scores");
-    if (scoresText)
-    {
-        scores = JSON.parse(scoresText);
-    }
+    // let scores = [];
+    // const scoresText = localStorage.getItem("scores");
+    // if (scoresText)
+    // {
+    //     scores = JSON.parse(scoresText);
+    // }
+    const response = await fetch("/api/scores");
+    const scores = await response.json();
+
     const tableBodyElement = document.querySelector('#scores');
 
     if (scores.length)
