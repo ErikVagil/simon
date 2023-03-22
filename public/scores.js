@@ -1,13 +1,23 @@
 async function loadScoresFromCookies()
 {
-    // let scores = [];
-    // const scoresText = localStorage.getItem("scores");
-    // if (scoresText)
-    // {
-    //     scores = JSON.parse(scoresText);
-    // }
-    const response = await fetch("/api/scores");
-    const scores = await response.json();
+    let scores = [];
+    try
+    {
+        const response = await fetch("/api/scores");
+        scores = await response.json();
+
+        // Update scores in cookies now in case server goes offline
+        localStorage.setItem("scores", JSON.stringify(scores));
+    }
+    catch
+    {
+        // Use stored scores if the server went offline
+        const storedScores = localStorage.getItem('scores');
+        if (storedScores)
+        {
+            scores = JSON.parse(storedScores);
+        }
+    }
 
     const tableBodyElement = document.querySelector('#scores');
 

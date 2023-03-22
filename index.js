@@ -16,19 +16,42 @@ app.use(`/api`, router);
 // "/scores" is where they're stored
 router.get("/scores", (_request, response) =>
 {
-  response.send(scores);
+    response.send(scores);
 });
 
 // POST scores middleware
 // "/score" is the score object to be added
 router.post("/score", (request, response) =>
 {
-  scores = updateScores(request.body, scores);
-  response.send(scores);
+    scores = updateScores(request.body, scores);
+    response.send(scores);
 });
 
 // Default case if can't get path
 app.use((_request, response) =>
 {
-  response.sendFile("index.html", { root: "public" });
+    response.sendFile("index.html", { root: "public" });
 });
+
+let scores = [];
+function updateScores(newScore, scores)
+{
+    let found = false;
+    for (const [i, prevScore] of scores.entries()) {
+        if (newScore.score > prevScore.score) {
+        scores.splice(i, 0, newScore);
+        found = true;
+        break;
+        }
+    }
+
+    if (!found) {
+        scores.push(newScore);
+    }
+
+    if (scores.length > 10) {
+        scores.length = 10;
+    }
+
+    return scores;
+}
