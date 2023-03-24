@@ -5,8 +5,32 @@
 
 .frame {
     height: calc(100px + 1em);
-    margin-bottom: 1em;
     padding: 0.5em;
-    background: rgb(80, 80, 90);
     border-radius: 5px; /* Makes border curved, duh */
+}
+
+.image-frame {
+    margin-bottom: 2em;
+    background:rgb(80, 80, 90);
+}
+
+.quote-frame {
+    max-height: calc(100px + 1em);
+    margin-top: 2em;
+    background: white;
+    color: black;
+    font-size: 1.25em;
+}
+
+.quote-text {
+    font-style: italic;
+}
+
+.quote-author {
+    font-weight: bold;
+    text-align: right;
+}
+
+.quote-author::before {
+    content: " - ";
 }

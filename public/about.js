@@ -17,4 +17,26 @@ function getImage()
     });
 }
 
+function getQuote()
+{
+    fetch("https://api.quotable.io/random")
+    .then((response) => response.json())
+    .then((data) =>
+    {
+        const frameElement = document.querySelector("#quote-frame");
+
+        const quoteText = document.createElement("p");
+        quoteText.classList.add("quote-text");
+        quoteText.textContent = data.content;
+        
+        const quoteAuthor = document.createElement("p");
+        quoteAuthor.classList.add("quote-author");
+        quoteAuthor.textContent = data.author;
+
+        frameElement.appendChild(quoteText);
+        frameElement.appendChild(quoteAuthor);
+    });
+}
+
 getImage();
+getQuote();
