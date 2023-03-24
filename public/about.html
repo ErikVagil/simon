@@ -6,6 +6,7 @@
         <title>CS260 Simon&reg;</title> <!-- Sets tab title -->
         <link rel="icon" href="favicon.ico"/> <!-- Sets tab image -->
         <link rel="stylesheet" href="style.css"> <!-- Adds stylesheet -->
+        <link rel="stylesheet" href="about.css">
 
         <!-- Bootstrap CSS import -->
         <link
@@ -35,10 +36,13 @@
             </nav>
         </header>
 
-        <main class="bg-secondary text-center px-3">
+        <main class="container-fluid bg-secondary text-center px-3">
             <div>
-                <p>Simon is a repetitive memory game where you follow the demonstrated color sequence until you make a mistake. The longer the sequence you repeat, the greater your score.</p>
-                <p>The name Simon is a registered trademark owned by Milton-Bradley. Our use of the name and the game is for non-profit educational use only. No part of this code or program should be used outside of that definition.</p>
+                <div id="image-frame" class="frame image-frame"></div>
+                <div>
+                    <p>Simon is a repetitive memory game where you follow the demonstrated color sequence until you make a mistake. The longer the sequence you repeat, the greater your score.</p>
+                    <p>The name Simon is a registered trademark owned by Milton-Bradley. Our use of the name and the game is for non-profit educational use only. No part of this code or program should be used outside of that definition.</p>
+                </div>
             </div>
         </main>
 
@@ -49,6 +53,7 @@
             </div>
         </footer>
 
+        <script src="about.js"></script>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
