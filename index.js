@@ -33,23 +33,29 @@ app.use((_request, response) =>
     response.sendFile("index.html", { root: "public" });
 });
 
+app.listen(3000);
+
 let scores = [];
 function updateScores(newScore, scores)
 {
     let found = false;
-    for (const [i, prevScore] of scores.entries()) {
-        if (newScore.score > prevScore.score) {
-        scores.splice(i, 0, newScore);
-        found = true;
-        break;
+    for (const [i, prevScore] of scores.entries())
+    {
+        if (newScore.score > prevScore.score)
+        {
+            scores.splice(i, 0, newScore);
+            found = true;
+            break;
         }
     }
 
-    if (!found) {
+    if (!found)
+    {
         scores.push(newScore);
     }
 
-    if (scores.length > 10) {
+    if (scores.length > 10)
+    {
         scores.length = 10;
     }
 
