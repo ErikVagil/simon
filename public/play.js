@@ -99,7 +99,7 @@ class Game
             {
                 method: "POST",
                 headers: { "content-type": "application/json" },
-                body: JSON.stringify(scoreToUpdate)
+                body: JSON.stringify(newScore)
             });
 
             const scores = await response.json();
@@ -107,7 +107,7 @@ class Game
         }
         catch
         {
-            this.updateScoreboardLocal(scoreToUpdate);
+            this.updateScoreboardLocal(newScore);
         }
     }
 
