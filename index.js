@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const db = require("./database.js");
+const DB = require("./database.js");
 
 let port;
 if (process.argv.length > 2)
@@ -21,14 +21,14 @@ app.use("/api", apiRouter);
 // Underscore denotes unused/private variables
 apiRouter.get("/scores", async (_request, response) =>
 {
-    const scores = await db.getHighScores();
+    const scores = await DB.getHighScores();
     response.send(scores);
 });
 
 apiRouter.post("/score", async (request, response) =>
 {
-    db.addScore(request.body);
-    const scores = await db.getHighScores();
+    DB.addScore(request.body);
+    const scores = await DB.getHighScores();
     response.send(scores);
 });
 
