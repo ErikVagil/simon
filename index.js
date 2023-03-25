@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const db = require("mongodb");
+const db = require("./database.js");
 
 let port;
 if (process.argv.length > 2)
