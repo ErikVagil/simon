@@ -55,6 +55,7 @@
     "mime-db": "^1.52.0",
     "mime-types": "^2.1.35",
     "minimatch": "^3.1.2",
+    "mongodb": "^5.1.0",
     "ms": "^2.0.0",
     "negotiator": "^0.6.3",
     "nodemon": "^2.0.22",
@@ -90,7 +91,6 @@
     "utils-merge": "^1.0.1",
     "vary": "^1.1.2"
   },
-  "devDependencies": {},
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
