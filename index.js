@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const db = require("mongodb");
 
 let port;
 if (process.argv.length > 2)
@@ -18,20 +19,22 @@ const apiRouter = express.Router();
 app.use("/api", apiRouter);
 
 // Underscore denotes unused/private variables
-apiRouter.get("/scores", (_request, response) =>
+apiRouter.get("/scores", async (_request, response) =>
 {
-    response.send(score);
+    const scores = await db.getHighScores();
+    response.send(scores);
 });
 
-apiRouter.post("/score", (request, response) =>
+apiRouter.post("/score", async (request, response) =>
 {
-    // scores = updateScores(request.body, scores);
+    db.addScore(request.body);
+    const scores = await db.getHighScores();
     response.send(scores);
 });
 
 app.use((_request, response) =>
 {
-    response.sendFile("index.html", { root: "public "});
+    response.sendFile("index.html", { root: "public" });
 });
 
 app.listen(port, () =>
