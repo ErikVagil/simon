@@ -87,9 +87,32 @@ class Game
         scoreDisplayElement.textContent = value;
     }
 
-    saveScoreToCookies(scoreToUpdate)
+    async saveScoreToCookies(scoreToUpdate)
     {
         const playerName = (localStorage.getItem("inputtedUserName") ?? "Guest");
+        const dateWon = new Date().toLocaleDateString();
+        const newScore = { name: playerName, score: scoreToUpdate, date: dateWon}
+        
+        try
+        {
+            const response = await fetch("/api/score",
+            {
+                method: "POST",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify(scoreToUpdate)
+            });
+
+            const scores = await response.json();
+            localStorage.setItem('scores', JSON.stringify(scores));
+        }
+        catch
+        {
+            this.updateScoreboardLocal(scoreToUpdate);
+        }
+    }
+
+    updateScoreboardLocal(scoreToUpdate)
+    {
         let scores = [];
 
         // Load scores from storage in JSON format
@@ -99,24 +122,14 @@ class Game
             scores = JSON.parse(scoresJSON);
         }
 
-        // Update scores into JSON and store
-        scores = this.updateScoreboard(playerName, scoreToUpdate, scores);
-        localStorage.setItem('scores', JSON.stringify(scores));
-    }
-
-    updateScoreboard(playerName, scoreToUpdate, scores)
-    {
-        const date = new Date().toLocaleDateString();
-        const newScoreObject = { name: playerName, score: scoreToUpdate, date: date };
-
         // Try to find where the new score should go
         let foundPosition = false;
         for (const [i, previousScore] of scores.entries())
         {
-            if (scoreToUpdate > previousScore)
+            if (scoreToUpdate > previousScore.score)
             {
                 foundPosition = true;
-                scores.splice(i, 0, newScoreObject);
+                scores.splice(i, 0, scoreToUpdate);
                 break;
             }
         }
@@ -124,7 +137,7 @@ class Game
         // Put new score in last place
         if (!foundPosition)
         {
-            scores.push(newScoreObject);
+            scores.push(scoreToUpdate);
         }
 
         // Cutoff scoreboard at 10 entries
@@ -133,7 +146,7 @@ class Game
             scores.length = 10;
         }
 
-        return scores;
+        localStorage.setItem('scores', JSON.stringify(scores));
     }
 
     // ------------------------
