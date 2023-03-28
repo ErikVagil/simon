@@ -1,11 +1,96 @@
-function login()
+(async () =>
 {
-    // Gets the username input text field
-    const usernameTextBox = document.querySelector("#user");
+    let authenticated = false;
+    const userName = localStorage.getItem('userName');
+    if (userName)
+    {
+        const nameElement = document.querySelector('#userName');
+        nameElement.value = userName;
+        const user = await getUser(nameElement.value);
+        authenticated = user?.authenticated;
+    }
 
-    // Sets the item "inputtedUserName" in cookies to the value in usernameTextBox
-    localStorage.setItem("inputtedUserName", usernameTextBox.value);
+    if (authenticated)
+    {
+        document.querySelector('#playerName').textContent = userName;
+        setDisplay('loginControls', 'none');
+        setDisplay('playControls', 'block');
+    }
+    else
+    {
+        setDisplay('loginControls', 'block');
+        setDisplay('playControls', 'none');
+    }
+})();
 
-    // Sets the current page to play.html
-    window.location.href = "play.html";
+async function loginUser()
+{
+    loginOrCreate(`/api/auth/login`);
+}
+
+async function createUser()
+{
+    loginOrCreate(`/api/auth/create`);
+}
+
+async function loginOrCreate(endpoint)
+{
+    const userName = document.querySelector('#userName')?.value;
+    const password = document.querySelector('#userPassword')?.value;
+    const response = await fetch(endpoint, {
+        method: 'post',
+        body: JSON.stringify({ email: userName, password: password }),
+        headers: 
+        {
+            'Content-type': 'application/json; charset=UTF-8'
+        }
+    });
+    const body = await response.json();
+
+    if (response?.status === 200)
+    {
+        localStorage.setItem('userName', userName);
+        window.location.href = 'play.html';
+    }
+    else
+    {
+        const modalElement = document.querySelector('#msgModal');
+        modalElement.querySelector('.modal-body').textContent = `⚠ Error: ${body.msg}`;
+        const msgModal = new bootstrap.Modal(modalElement, {});
+        msgModal.show();
+    }
+}
+
+function play()
+{
+    window.location.href = 'play.html';
+}
+
+function logout()
+{
+    fetch(`/api/auth/logout`, {
+        method: 'delete',
+    }).then(() => (window.location.href = '/'));
+}
+
+async function getUser(email)
+{
+    let scores = [];
+    // See if we have a user with the given email.
+    const response = await fetch(`/api/user/${email}`);
+    if (response.status === 200) {
+        return response.json();
+    }
+    else
+    {
+        return null;
+    }
+}
+
+function setDisplay(controlId, display)
+{
+    const playControlElement = document.querySelector(`#${controlId}`);
+    if (playControlElement) {
+        playControlElement.style.display = display;
+    }
 }

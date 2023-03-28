@@ -78,7 +78,7 @@ class Game
         const playerNameElement = document.querySelector(".player-username");
 
         // Set player display element to stored name or "Guest" for no name
-        playerNameElement.textContent = (localStorage.getItem("inputtedUserName") ?? "Guest");
+        playerNameElement.textContent = (localStorage.getItem("userName") ?? "Guest");
     }
 
     updateScoreDisplayElement(value)
@@ -89,7 +89,7 @@ class Game
 
     async saveScoreToCookies(scoreToUpdate)
     {
-        const playerName = (localStorage.getItem("inputtedUserName") ?? "Guest");
+        const playerName = (localStorage.getItem("userName") ?? "Guest");
         const dateWon = new Date().toLocaleDateString();
         const newScore = { name: playerName, score: scoreToUpdate, date: dateWon}
         

@@ -70,7 +70,7 @@ apiRouter.get("/user/:email", async (request, response) =>
     const user = await DB.getUser(request.params.email);
     if (user)
     {
-        const token = req?.cookies.token;
+        const token = request?.cookies.token;
         response.send({ email: user.email, authenticated: token === user.token });
 
     }
