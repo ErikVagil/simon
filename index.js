@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const express = require("express");
 const app = express();
 const DB = require("./database.js");
+const { PeerProxy } = require("./peerProxy.js");
 
 const authCookieName = "token";
 
@@ -83,6 +84,20 @@ apiRouter.get("/user/:email", async (request, response) =>
 const secureApiRouter = express.Router();
 app.use("/api", secureApiRouter);
 
+secureApiRouter.use(async (request, response, next) =>
+{
+    const authToken = request.cookies[authCookieName];
+    const user = await DB.getUserByToken(authToken);
+    if (user)
+    {
+        next();
+    }
+    else
+    {
+        response.status(401).send({ msg: 'Unauthorized' });
+    }
+});
+
 // Underscore denotes unused/private variables
 secureApiRouter.get("/scores", async (_request, response) =>
 {
@@ -95,6 +110,11 @@ secureApiRouter.post("/score", async (request, response) =>
     DB.addScore(request.body);
     const scores = await DB.getHighScores();
     response.send(scores);
+});
+
+app.use(function (error, _request, response, _next)
+{
+    response.status(500).send({ type: error.name, message: error.message });
 });
 
 app.use((_request, response) =>
@@ -112,8 +132,10 @@ function setAuthCookie(response, authToken)
     });
 }
 
-app.listen(port, () =>
+const httpService = app.listen(port, () =>
 {
     // Send confirmation that server is listening
     console.log(`Listening on port ${port}`);
 });
+
+new PeerProxy(httpService);
