@@ -1,0 +1,20 @@
+#player-messages {
+    padding-top: 0.25em;
+    opacity: 0.7;
+}
+
+#count {
+    color: yellow;
+}
+
+.event {
+    color: grey;
+}
+
+.player-event {
+    color: cyan;
+}
+
+.system-event {
+    color: orange;
+}
